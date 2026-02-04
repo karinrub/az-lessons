@@ -1,0 +1,80 @@
+/* =========================
+   SUN DIVIDER
+   ========================= */
+
+.sun-divider {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0 2.5rem;
+  pointer-events: none;
+}
+
+.sun {
+  position: relative;
+  width: 48px;
+  height: 48px;
+}
+
+/* =========================
+   CORE (FIXED)
+   ========================= */
+
+.sun-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+/* =========================
+   RAYS (MOVING LAYER)
+   ========================= */
+
+.sun-rays {
+  position: absolute;
+  inset: 0;
+  animation: sun-drift 10s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Individual rays */
+.ray {
+  position: absolute;
+  width: 2px;
+  height: 10px;
+  background: var(--color-primary);
+  opacity: 0.45;
+}
+
+/* Ray placement */
+.r1 { top: 2px; left: 50%; transform: translateX(-50%); }
+.r2 { top: 8px; right: 8px; transform: rotate(45deg); }
+.r3 { top: 50%; right: 2px; transform: translateY(-50%) rotate(90deg); }
+.r4 { bottom: 8px; right: 8px; transform: rotate(135deg); }
+.r5 { bottom: 2px; left: 50%; transform: translateX(-50%) rotate(180deg); }
+.r6 { bottom: 8px; left: 8px; transform: rotate(225deg); }
+.r7 { top: 50%; left: 2px; transform: translateY(-50%) rotate(270deg); }
+.r8 { top: 8px; left: 8px; transform: rotate(315deg); }
+
+/* =========================
+   ANIMATION
+   ========================= */
+
+/* Gentle oscillating rotation (NOT a spinner) */
+@keyframes sun-drift {
+  0% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(-5deg);
+  }
+}
